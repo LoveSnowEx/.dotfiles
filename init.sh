@@ -1,7 +1,18 @@
 cd ~
-sudo pacman-mirros
-sudo pacman -Syyu
-sudo pacman -S zsh git net-tools z cargo
+
+sudo git config --global credential.helper store
+sudo git config --global user.name "LoveSnowEx"
+sudo git config --global user.email lsktw22@gamil.com
+sudo git config --global core.editor nano
+
+sudo pacman-mirrors --country China,Taiwan --api --protocols all --set-branch stable
+sudo pacman-mirros -fc
+
+echo '[archlinuxcn]
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf
+
+sudo pacman -Syyu archlinux-keyring
+sudo pacman -S zsh net-tools z cargo
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sudo git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/powerlevel10k
 sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -22,8 +33,6 @@ export $(dbus-launch)
 ' >> ~/.zshrc
 sudo cat ~/.dotfiles/wsl.conf > /etc/wsl.conf
 sudo rm -rf /etc/resolv.conf
-sudo cp ~/.dotfiles/resolv.conf > /etc/resolv.conf
-sudo git config --global credential.helper store
-sudo git config --global user.name "LoveSnowEx"
-sudo git config --global user.email lsktw22@gamil.com
-sudo git config --global core.editor nano
+sudo cp ~/.dotfiles/resolv.conf /etc/resolv.conf
+sudo mkdir /usr/lib/wsl/lib2
+sudo ln -s /usr/lib/wsl/lib/* /usr/lib/wsl/lib2
