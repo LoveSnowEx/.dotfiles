@@ -1,0 +1,7 @@
+[credential]
+	help = store
+[user]
+	email = lsktw22@gmail.com
+	name = LoveSnowEx
+[core]
+	editor = nano
